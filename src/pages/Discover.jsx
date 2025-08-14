@@ -13,7 +13,7 @@ const Discover = () => {
 
     if (error) return (<Error />);
 
-  console.log(data);
+  console.log(activeSong);
 
   return (
     <div className="flex flex-col">

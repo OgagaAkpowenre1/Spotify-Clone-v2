@@ -20,9 +20,20 @@ const Player = ({ activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate
     ref.current.currentTime = seekTime;
   }, [seekTime]);
 
+  
+useEffect(() => {
+  if (ref.current) {
+    if (isPlaying) {
+      ref.current.play().catch(err => console.error('Playback failed:', err));
+    } else {
+      ref.current.pause();
+    }
+  }
+}, [isPlaying, activeSong]);
+
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={activeSong?.attributes?.previews?.[0]?.url}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
