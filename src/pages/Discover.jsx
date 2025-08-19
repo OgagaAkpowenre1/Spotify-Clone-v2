@@ -10,10 +10,10 @@ const Discover = () => {
 //   const { data, isFetching, error } = useGetTopChartsQuery();
 const { data, isFetching, error } = useGetTopChartsQuery(undefined, {
     refetchOnMountOrArgChange: false,
-    keepUnusedDataFor: 300, // keep cached for 5 minutes
+    keepUnusedDataFor: 3000, // keep cached for 5 minutes
   });
   
-
+  console.log(data)
     if (isFetching) return (<Loader title="Loading songs..." />);
 
     if (error) return (<Error />);
