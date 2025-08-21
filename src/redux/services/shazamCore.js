@@ -22,16 +22,17 @@ export const shazamCoreApi = createApi({
         baseUrl: 'https://shazam-core.p.rapidapi.com/v1',
         prepareHeaders: (headers) => {
             headers.set('x-rapidapi-host', 'shazam-core.p.rapidapi.com');
-            headers.set('x-rapidapi-key', 'd330729ae9mshfff0017125454efp1eed1bjsnbbbe8186a137');
-
+            headers.set('x-rapidapi-key', 'eb5a28731bmshe95a7779e408612p1b0befjsnc30b2401c11f');
+              console.log("headers applied:", headers);
             return headers;
         }
     }),
     endpoints: (builder) => ({
         getTopCharts: builder.query({query: () => '/charts/world?country_code=NG'}),
+        getSongDetails: builder.query({query: ({songid}) => `https://shazam-core.p.rapidapi.com/v2/tracks/details?track_id=${songid}`}),
+        // getSongRelated: builder.query({query: ({songid}) => `/tracks/related?track_id=${songid}&offset=0`}),
     })
-
 })
 
 
-export const { useGetTopChartsQuery } = shazamCoreApi;
+export const { useGetTopChartsQuery, useGetSongDetailsQuery, useGetSongRelatedQuery } = shazamCoreApi;
